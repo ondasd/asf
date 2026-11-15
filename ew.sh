@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eou piefail
+set -eou pipefail
 cd ~
 git clone https://github.com/ondasd/for-disko
 git clone https://github.com/ondasd/disko-setup
@@ -14,7 +14,7 @@ case $answer in
     Y|YES|YE|ye|yes|y)
         read -rp "disk:" refer
         cd ~/disko-setup
-        sed -i "6s|.*|        device = \"/dev/$refer\"|" disko-conf.nix
+        sed -i "6s|.*|        device = \"/dev/$refer\";|" disko-conf.nix
         ;;
     N|NO|n|no)
         echo "good"
