@@ -26,7 +26,8 @@ cp  ~/disko-setup/disko-conf.nix /tmp/disko.nix
 cd /tmp
 nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /tmp/disko.nix
 echo "work?"
-read -p "yes/no" otvet
+echo "yes/no"
+read -p ":" otvet
 case $otvet in
     YES|YE|Y|yes|ye|y)
         echo "nice"
