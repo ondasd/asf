@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -eou pipefail
 cd ~
 git clone https://github.com/ondasd/for-disko
 git clone https://github.com/ondasd/disko-setup
@@ -48,7 +47,6 @@ cp ~/for-disko/configuration.nix /mnt/etc/nixos/configuration.nix
 touch /mnt/etc/nixos/flake.nix
 cp ~/for-disko/flake.nix /mnt/etc/nixos/flake.nix
 nixos-install
-sed '7d' configuration.nix
 cd ~
 rm -rf for-disko
 rm -rf disko-setup
