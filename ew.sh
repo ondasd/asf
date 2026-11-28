@@ -8,11 +8,11 @@ echo "--------------------------------------------------------"
 echo "!DEFAULT DISK-/dev/sda!"
 echo "--------------------------------------------------------"
 echo "Need to format the disk?"
-read -p "y/n: " 1
-case $1 in
+read -p "y/n: " qwe
+case $qwe in
     Y|YES|YE|YS|y|yes|ye|ys)
-        read -rp "disk" 2
-        wipefs -a /dev/"$2"
+        read -rp "disk: " asd
+        wipefs -a /dev/"$asd"
         ;;
     N|NO|n|no)
         echo "ok"
@@ -33,6 +33,7 @@ case $answer in
         ;;
     *)
         echo "try again"
+        ;;        
 esac
 cp  ~/disko-setup/disko-conf.nix /tmp/disko.nix
 cd /tmp
@@ -60,7 +61,7 @@ cp ~/for-disko/configuration.nix /mnt/etc/nixos/configuration.nix
 touch /mnt/etc/nixos/flake.nix
 cp ~/for-disko/flake.nix /mnt/etc/nixos/flake.nix
 nixos-install
-sed -i '/"${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"/s/^/#/' configuration.nix
+sed '7c# "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"' configuration.nix
 touch /mnt/etc/nixos/Home.nix
 cp ~/for-disko/home.nix /mnt/etc/nixos/Home.nix
 nixos-rebuild switch
