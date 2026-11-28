@@ -48,6 +48,9 @@ touch /mnt/etc/nixos/flake.nix
 cp ~/for-disko/flake.nix /mnt/etc/nixos/flake.nix
 nixos-install
 sed -i '/"${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"/s/^/#/' configuration.nix
+touch /mnt/etc/nixos/Home.nix
+cp ~/for-disko/home.nix /mnt/etc/nixos/Home.nix
+nixos-rebuild switch
 cd ~
 rm -rf for-disko
 rm -rf disko-setup
