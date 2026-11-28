@@ -7,11 +7,24 @@ lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL
 echo "--------------------------------------------------------"
 echo "!DEFAULT DISK-/dev/sda!"
 echo "--------------------------------------------------------"
+echo "Need to format the disk?"
+read -p "y/n: " 1
+case $1 in
+    Y|YES|YE|YS|y|yes|ye|ys)
+        read -rp "disk" 2
+        wipefs -a /dev/"$2"
+        ;;
+    N|NO|n|no)
+        echo "ok"
+    ;;
+    *)
+        echo "try again"
+esac
 echo "change?"
 read -p "yes/no: " answer
 case $answer in
     Y|YES|YE|ye|yes|y)
-        read -rp "disk:" refer
+        read -rp "disk: " refer
         cd ~/disko-setup
         sed -i "6s|.*|        device = \"/dev/$refer\";|" disko-conf.nix
         ;;
